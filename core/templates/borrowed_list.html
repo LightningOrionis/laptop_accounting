@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+  {% if borrowed_items %}
   <h1>Список взятых устройств: </h1>
   <table>
     <tr>
@@ -15,6 +16,7 @@
       <th>Комментарий:</th>
       <th>Серийный номер:</th>
       <th>Начало аренды:</th>
+      <th>Вернуть на склад</th>
     </tr>
     {% for i, item in borrowed_items %}
       <tr>
@@ -23,12 +25,16 @@
         <td>{{ item.item.configuration_link }}</td>
         <td>{{ item.item.price }}</td>
         <td>{{ item.paid_by }}</td>
-        <td>{{ item.borrower.name }}</td>
+        <td><a href="{% url 'worker_detail' item.borrower.pk%}">{{ item.borrower.name }}</a></td>
         <td>{{ item.borrower.team }}</td>
         <td>{{ item.comment }}</td>
         <td>{{ item.item.pk }}</td>
         <td>{{ item.borrow_date.date }}</td>
+        <td><a href="{% url 'return_item' item.pk%}">Вернуть</a></td>
       </tr>
     {% endfor %}
   </table>
+  {% else %}
+    <h1> Нет взятых устройств </h1>
+  {% endif %}
 {% endblock %}

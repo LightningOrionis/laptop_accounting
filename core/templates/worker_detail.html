@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div>
+    <h2>{{ worker.name }}</h2>
+    <img src="{{ worker.image.url }}" width=150 height="150">
+    <h4>Команда: {{ worker.team }}</h4>
+    <hr>
+  </div>
+  <div>
+    {% if borrowed_items %}
+    {{ borrowed_items.count }}
+    <h3>Устройства в использовании:</h3>
+    <table>
+      <tr>
+        <th>#</th>
+        <th>Название:</th>
+        <th>Конфигурация</th>
+        <th>Цена($):</th>
+        <th>Оплачено:</th>
+        <th>Комментарий:</th>
+        <th>Серийный номер:</th>
+        <th>Начало аренды:</th>
+        <th>Вернуть на склад</th>
+      </tr>
+      {% for i, item in borrowed_items %}
+        <tr>
+          <td>{{ i }}</td>
+          <td>{{ item.item.title }}</td>
+          <td>{{ item.item.configuration_link }}</td>
+          <td>{{ item.item.price }}</td>
+          <td>{{ item.paid_by }}</td>
+          <td>{{ item.comment }}</td>
+          <td>{{ item.item.pk }}</td>
+          <td>{{ item.borrow_date.date }}</td>
+          <td><a href="#">Вернуть</a></td>
+        </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <h3>Нет устройств в использовании</h3>
+    {% endif %}
+  </div>
+{% endblock %}

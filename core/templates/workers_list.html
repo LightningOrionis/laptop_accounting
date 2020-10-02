@@ -5,7 +5,7 @@
   <h1> Список работников </h1>
   <table>
     <tr>
-      <th>#</th>
+      <th>ID</th>
       <th>Имя</th>
       <th>Команда</th>
       <th>Изменить</th>
@@ -14,7 +14,7 @@
     {% for worker in workers_list %}
       <tr>
         <td>{{ worker.pk }}</td>
-        <td>{{ worker.name }}</td>
+        <td><a href="{% url 'worker_detail' worker.pk%}">{{ worker.name }}</a></td>
         <td>{{ worker.team }}</td>
         <td><a href="{% url 'update_worker' worker.pk %}">Изменить</a></td>
         <td><a href="{% url 'delete_worker' worker.pk %}">Удалить</a></td>

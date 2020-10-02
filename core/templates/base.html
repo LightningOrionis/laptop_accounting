@@ -15,10 +15,10 @@
     <a href="{% url 'index' %}"> На главную </a>
     <a href="{% url 'create_worker'%}"> Добавить работника </a>
     <a href="{% url 'workers_list' %}"> Список работников </a>
-    <a href="#"> Добавить устройство </a>
+    <a href="{% url 'create_item' %}"> Добавить устройство </a>
     <a href="{% url 'borrowed_list' %}"> Список устройств в пользовании</a>
     <a href="{% url 'items_list' %}"> Список устройств на складе </a>
-    <a href="#"> Выдать устройство </a>
+    <a href="{% url 'borrow_item' 'new'%}"> Выдать устройство </a>
   </div>
   <div class="main">
     {% block content%}

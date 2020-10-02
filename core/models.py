@@ -1,6 +1,10 @@
 from django.db import models
 
 
+def get_img_url(worker, filename):
+    return 'workers/{0}_{1}'.format(worker.id, filename)
+
+
 class Item(models.Model):
     TYPE_CHOICES = (
         ('NB', 'Notebook'),
@@ -20,6 +24,7 @@ class Item(models.Model):
 class Worker(models.Model):
     name = models.CharField(max_length=100)
     team = models.CharField(max_length=50)
+    image = models.FileField(upload_to=get_img_url)
 
     def __str__(self):
         return self.name

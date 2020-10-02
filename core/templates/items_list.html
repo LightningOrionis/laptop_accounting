@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+  {% if items_list %}
   <h1>Список доступных устройств: </h1>
   <table>
     <tr>
@@ -11,6 +12,8 @@
       <th>Цена($):</th>
       <th>Серийный номер:</th>
       <th>Выдать</th>
+      <th>Редактировать</th>
+      <th>Удалить</th>
     </tr>
     {% for i, item in items_list %}
       <tr>
@@ -19,8 +22,13 @@
         <td>{{ item.configuration_link }}</td>
         <td>{{ item.price }}</td>
         <td>{{ item.pk }}</td>
-        <td><a href="#">Выдать устройство</a></td>
+        <td><a href="{% url 'borrow_item' item.pk|stringformat:'i' %}">Выдать устройство</a></td>
+        <td><a href="{% url 'update_item' item.pk %}">Редактировать</a></td>
+        <td><a href="{% url 'delete_item' item.pk %}">Удалить</a></td>
       </tr>
     {% endfor %}
   </table>
+  {% else %}
+    <h1>Нет доступных устройств</h1>
+  {% endif %}
 {% endblock %}
