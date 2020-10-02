@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <h1>Список доступных устройств: </h1>
+  <table>
+    <tr>
+      <th>#</th>
+      <th>Название:</th>
+      <th>Конфигурация</th>
+      <th>Цена($):</th>
+      <th>Серийный номер:</th>
+      <th>Выдать</th>
+    </tr>
+    {% for i, item in items_list %}
+      <tr>
+        <td>{{ i }}</td>
+        <td>{{ item.title }}</td>
+        <td>{{ item.configuration_link }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.pk }}</td>
+        <td><a href="#">Выдать устройство</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
