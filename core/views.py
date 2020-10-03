@@ -7,6 +7,7 @@ from django.urls import reverse
 from .models import *
 from .forms import BorrowItemForm
 
+
 class IndexView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'index.html')
