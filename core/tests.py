@@ -93,3 +93,25 @@ class HttpResponseTest(TestCase):
                                                     paid_by='abc', comment='ab')
         response = self.c.get('/borrowed_item/{0}/return'.format(borrowed_item.pk))
         self.assertEqual(response.status_code, 302)
+
+
+class ModelTest(TestCase):
+
+    def setUp(self):
+        self.item = Item.objects.create(title='abc', configuration_link='https://hi.ru',
+                                        price='1450', type='NB')
+        self.borrower = Worker.objects.create(name='worker', team='abc',
+                                              image = 'img')
+        self.borrowed_item = BorrowedItem.objects.create(item=self.item,
+                                                         borrower=self.borrower,
+                                                         paid_by='smb',
+                                                         comment='123')
+
+    def test_str_item(self):
+        self.assertEqual(str(self.item), 'abc')
+
+    def test_str_borrowed_item(self):
+        self.assertEqual(str(self.borrowed_item), 'abc')
+
+    def test_str_worker(self):
+        self.assertEqual(str(self.borrower), 'worker')
