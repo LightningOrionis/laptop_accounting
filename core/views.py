@@ -31,7 +31,6 @@ class WorkersListView(View):
         context = {'workers_list': workers_list}
         return render(request, 'workers_list.html', context)
 
-
 class ItemsListView(View):
     def get(self, request, *args, **kwargs):
         items = Item.objects.all()
